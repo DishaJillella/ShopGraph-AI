@@ -1,0 +1,34 @@
+Steps to run this application
+1️⃣ Clone Repo
+```bash
+git clone <your-repo-url>
+cd <repo-name>
+2️⃣ Create Virtual Environment
+python -m venv .venv
+.venv\Scripts\activate
+3️⃣ Install Dependencies
+pip install -r requirements.txt
+4️⃣ Set Environment Variables
+Create .env:
+
+OPENAI_API_KEY=your_api_key
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/langgraph
+5️⃣ Run the Application
+python agent.py
+**Set up Docker**
+Start PostgreSQL with pgvector
+
+Run:
+
+docker run --name pgvector-langgraph \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_DB=langgraph \
+  -p 5432:5432 \
+  -d pgvector/pgvector:pg16
+
+
+
+4️⃣ Connect to Database 
+docker exec -it pgvector-langgraph psql -U postgres -d langgraph
+
